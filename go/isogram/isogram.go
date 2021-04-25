@@ -10,8 +10,12 @@ import (
 func IsIsogram(word string) bool {
 	word = strings.ToLower(word)
 
-	for index, letter := range word {
-		if unicode.IsLetter(letter) && strings.ContainsRune(word[index+1:], letter) {
+	for _, r := range word {
+		if !unicode.IsLetter(r) {
+			continue
+		}
+
+		if strings.Count(word, string(r)) > 1 {
 			return false
 		}
 	}
