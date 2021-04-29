@@ -1,7 +1,6 @@
 package luhn
 
 import (
-	"strconv"
 	"strings"
 	"unicode"
 )
@@ -23,7 +22,7 @@ func Valid(s string) bool {
 			return false
 		}
 
-		n, _ := strconv.Atoi(string(r))
+		n := int(r - '0')
 
 		if tag {
 			n *= 2
