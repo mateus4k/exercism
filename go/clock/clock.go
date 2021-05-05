@@ -13,13 +13,14 @@ const (
 )
 
 func New(h, m int) Clock {
-	minutes := (h*minutesInHour + m) % minuteInDay
+	m += h * minutesInHour
+	m %= minuteInDay
 
-	if minutes < 0 {
-		minutes += minuteInDay
+	if m < 0 {
+		m += minuteInDay
 	}
 
-	return Clock{minutes}
+	return Clock{m}
 }
 
 func (c Clock) Add(m int) Clock {
